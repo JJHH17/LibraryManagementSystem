@@ -1,14 +1,16 @@
 package Application;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 public class Library {
     private String name;
-    private ArrayList<Book> books;
+    private Database database;;
 
     public Library(String name) {
         this.name = name;
-        this.books = new ArrayList<>();
+        this.database = new Database();
+        this.database.createBookTable();
     }
 
     public String getName() {
@@ -16,10 +18,10 @@ public class Library {
     }
 
     public void addBook(Book book) {
-        books.add(book);
+        // To be added with database class
     }
 
-    public ArrayList<Book> getBooks() {
-        return books;
+    public void getBooks() {
+        return;
     }
 }
