@@ -1,8 +1,5 @@
 package Application;
 
-import javax.xml.crypto.Data;
-import java.util.ArrayList;
-
 public class Library {
     private String name;
     private Database database;;
@@ -18,11 +15,14 @@ public class Library {
     }
 
     public void addBook(Book book) {
-        // To be added with database class
         database.addBook(book);
     }
 
     public void getBooks() {
         return;
+    }
+
+    public void deleteBook(String bookName) {
+        database.deleteBook(bookName);
     }
 }
