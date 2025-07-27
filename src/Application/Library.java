@@ -19,7 +19,7 @@ public class Library {
     }
 
     public void getBooks() {
-        return;
+        database.getBooks().forEach(System.out::println);
     }
 
     public void deleteBook(String bookName) {
