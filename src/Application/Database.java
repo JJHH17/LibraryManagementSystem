@@ -68,4 +68,25 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    /** Allows user to delete a book from database */
+    public void deleteBook(String bookName) {
+        String sql = "DELETE FROM book WHERE name = ?";
+
+        try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+             PreparedStatement prepared = connection.prepareStatement(sql)) {
+
+            prepared.setString(1, bookName);
+            int rowsDeleted = prepared.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("Book deleted successfully");
+            } else {
+                System.out.println("Book not found");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("There was an error when deleting the book");
+            e.printStackTrace();
+        }
+    }
 }
