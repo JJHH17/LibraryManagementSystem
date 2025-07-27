@@ -1,0 +1,5 @@
+Example of Database properties, used for credentials - add to db.properties file (when added to project root)
+
+db.url=jdbc:postgresql://localhost:5432/LibraryManagementSystem (Change to the correct route)
+db.username=your_username
+db.password=your_password
