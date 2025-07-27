@@ -24,4 +24,10 @@ As this is the case, both need to be installed and added to the project in order
 - Select "+" > "JARs or Directories"
 - Add the relevant JAR file installed from the JDBC driver installation
 
+```How to connect to the database```
+
+1. Create a db.properties file in the root of the project.
+2. Use the db.properties.template file, which contains a template on how the credentials need to be laid out.
+3. Create a Postgresql database to run connections to
+
 ```How to run/use the project```
