@@ -19,6 +19,7 @@ public class Library {
 
     public void addBook(Book book) {
         // To be added with database class
+        database.addBook(book);
     }
 
     public void getBooks() {
