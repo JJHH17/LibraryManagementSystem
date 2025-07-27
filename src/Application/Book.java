@@ -31,6 +31,10 @@ public class Book {
         return isAvailable;
     }
 
+    public void setAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+
     public Library getLibrary() {
         return library;
     }
