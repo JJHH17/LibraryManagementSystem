@@ -46,4 +46,26 @@ public class Database {
             throw new RuntimeException("Database operation failed (Table creation)", e);
         }
     }
+
+    /** Allowing user to add books, which is fed in via library class */
+    public void addBook(Book book) {
+        String sql = "INSERT INTO book (name, author, numberOfRents, isAvailable, libraryName) VALUES (?, ?, ?, ?, ?)";
+
+        // Feeding object into SQL
+        try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+             PreparedStatement prepared = connection.prepareStatement(sql)) {
+
+            prepared.setString(1, book.getName());
+            prepared.setString(2, book.getAuthor());
+            prepared.setInt(3, book.getNumberOfRents());
+            prepared.setBoolean(4, book.isAvailable());
+            prepared.setString(5, book.getLibrary().getName());
+            prepared.executeUpdate();
+            System.out.println("Book added successfully");
+
+        } catch (SQLException e) {
+            System.out.println("There was an error adding the book");
+            e.printStackTrace();
+        }
+    }
 }
