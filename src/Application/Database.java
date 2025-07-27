@@ -30,7 +30,7 @@ public class Database {
     public void createBookTable() {
         String sql = "CREATE TABLE IF NOT EXISTS book (" +
                 "bookId SERIAL PRIMARY KEY," +
-                "name VARCHAR(255) NOT NULL UNIQUE," +
+                "name VARCHAR(255) NOT NULL," +
                 "author VARCHAR(255)," +
                 "numberOfRents INTEGER," +
                 "isAvailable BOOLEAN NOT NULL," +
@@ -88,5 +88,35 @@ public class Database {
             System.out.println("There was an error when deleting the book");
             e.printStackTrace();
         }
+    }
+
+    /** Returns a list of books from the database for displaying */
+    public ArrayList<String> getBooks() {
+        ArrayList<String> books = new ArrayList<>();
+        String sql = "SELECT * FROM book";
+
+        try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+             PreparedStatement prepared = connection.prepareStatement(sql)) {
+
+            ResultSet result = prepared.executeQuery();
+
+            while (result.next()) {
+                int bookId = result.getInt("bookId");
+                String name = result.getString("name");
+                String author = result.getString("author");
+                int numberOfRents = result.getInt("numberOfRents");
+                boolean isAvailable = result.getBoolean("isAvailable");
+                String libraryName = result.getString("libraryName");
+
+                // TODO: FETCH THESE ITEMS FOR PRINTING
+                books.add("Book ID: " + bookId + " Book Name: " + name + " Author: " + author + " Number of Rents: " + numberOfRents
+                        + " Is Available? " + isAvailable + " Library Name: " + libraryName);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("There was an error when fetching the books");
+            e.printStackTrace();
+        }
+        return books;
     }
 }
