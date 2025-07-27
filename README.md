@@ -28,6 +28,7 @@ As this is the case, both need to be installed and added to the project in order
 
 1. Create a db.properties file in the root of the project.
 2. Use the db.properties.template file, which contains a template on how the credentials need to be laid out.
-3. Create a Postgresql database to run connections to
+3. Create a Postgresql database to run connections.
+4. The database class will then pick up these credentials via the dbURL, dbUsername and dbPassword variables
 
 ```How to run/use the project```
