@@ -35,6 +35,15 @@ public class Book {
         this.isAvailable = isAvailable;
     }
 
+    public void rentBook() {
+        this.numberOfRents++;
+        this.isAvailable = false;
+    }
+
+    public void returnBook() {
+        this.isAvailable = true;
+    }
+
     public Library getLibrary() {
         return library;
     }
