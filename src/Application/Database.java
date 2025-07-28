@@ -156,4 +156,24 @@ public class Database {
             System.out.println("Invalid call name");
         }
     }
+
+    public void deleteAllBooks(String libraryName) {
+        String sql = "DELETE FROM book WHERE libraryName = ?";
+
+        try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+             PreparedStatement prepared = connection.prepareStatement(sql)) {
+
+            prepared.setString(1, libraryName);
+            int rowsDeleted = prepared.executeUpdate();
+            if (rowsDeleted > 0) {
+                System.out.println("Books in library deleted successfully");
+            } else {
+                System.out.println("Libeae not found");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("There was an error when deleting the books");
+            e.printStackTrace();
+        }
+    }
 }
