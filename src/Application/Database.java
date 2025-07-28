@@ -176,4 +176,26 @@ public class Database {
             e.printStackTrace();
         }
     }
+
+    /** Checks whether a library exists or not */
+    public boolean libraryChecker(String libraryName) {
+        String sql = "SELECT COUNT(*) FROM book WHERE libraryName = ?";
+
+        try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+             PreparedStatement prepared = connection.prepareStatement(sql)) {
+
+            prepared.setString(1, libraryName);
+            ResultSet resultSet = prepared.executeQuery();
+
+            if (resultSet.next()) {
+                return resultSet.getInt(1) > 0;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("There was an error when checking the library");
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
 }
