@@ -13,7 +13,8 @@ public class Main {
             System.out.println("1. Add a Book");
             System.out.println("2. Get all books");
             System.out.println("3. Delete all books");
-            System.out.println("4. Exit");
+            System.out.println("4. Delete a a specific book");
+            System.out.println("5. Exit");
 
             int option = Integer.parseInt(scanner.nextLine());
 
@@ -43,6 +44,13 @@ public class Main {
                     break;
 
                 case 4:
+                    System.out.println("Please enter the name of the book you wish to delete:");
+                    Library library3 = new Library("Library 1");
+                    String bookName1 = scanner.nextLine();
+                    library3.deleteBook(bookName1);
+                    break;
+
+                case 5:
                     active = false;
                     break;
             }
