@@ -168,7 +168,7 @@ public class Database {
             if (rowsDeleted > 0) {
                 System.out.println("Books in library deleted successfully");
             } else {
-                System.out.println("Libeae not found");
+                System.out.println("Library not found");
             }
 
         } catch (SQLException e) {
