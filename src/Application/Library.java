@@ -25,4 +25,8 @@ public class Library {
     public void deleteBook(String bookName) {
         database.deleteBook(bookName);
     }
+
+    public void editBook(String bookName, String callName) {
+        database.editBook(bookName, callName);
+    }
 }
