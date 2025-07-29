@@ -2,10 +2,15 @@ package Application;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main extends Application {
 
@@ -21,18 +26,43 @@ public class Main extends Application {
         Label title = new Label("Library Management System");
         VBox layout = new VBox(10);
 
-
         // App navigation buttons
         Button addBook = new Button("Add a Book");
         Button editBook = new Button("Edit a Book");
         Button deleteBook = new Button("Delete a Book");
         Button deleteAllBooks = new Button("Delete all books");
         Button getBooks = new Button("Get all books");
-
-
         layout.getChildren().addAll(title, addBook, editBook, deleteBook, deleteAllBooks, getBooks);
 
         // Adds and creates interface
+        Scene scene = new Scene(layout, 300, 250);
+        primaryStage.setScene(scene);
+    }
+
+    /** Allows user to add a book via frontend*/
+    public static void addBook(Stage primaryStage) {
+        Label title = new Label("Add a Book");
+        VBox layout = new VBox(10);
+
+        Label libraryNameLabel = new Label("Library Name: ");
+        TextField libraryNameField = new TextField();
+        Label authorLabel = new Label("Author: ");
+        TextField authorField = new TextField();
+        // Allowing user to enter up to 100 rents for a book via a ranged list
+        Label numberOfRentsLabel = new Label("Number of Rents: ");
+        List<Integer> rentOptions = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            rentOptions.add(i);
+        }
+        ComboBox<Integer> numberOfRentsField = new ComboBox<>();
+        numberOfRentsField.getItems().addAll(rentOptions);
+        // Allowing user to select whether book is available or not
+        Label isAvailableLabel = new Label("Is the book Available? ");
+        ComboBox<String> isAvailableField = new ComboBox<>();
+        isAvailableField.getItems().addAll("Yes", "No");
+
+        layout.getChildren().addAll(title, libraryNameLabel, libraryNameField, authorLabel, authorField, numberOfRentsLabel, numberOfRentsField, isAvailableLabel, isAvailableField);
+
         Scene scene = new Scene(layout, 300, 250);
         primaryStage.setScene(scene);
     }
