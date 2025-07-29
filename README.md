@@ -24,6 +24,13 @@ As this is the case, both need to be installed and added to the project in order
 - Select "+" > "JARs or Directories"
 - Add the relevant JAR file installed from the JDBC driver installation
 
+```JavaFX (frontend)```
+
+1. Install JavaFX from: https://gluonhq.com/products/javafx/ (Install the SDK folder)
+2. Head over to "File > Project Structure > Project Settings > Libraries > + > Add the JAR files found in the Lib folder"
+3. Set the VM options - "Run > Edit Configurations > Select Main class under Application > Enter the following in VM options":
+```--module-path "/path/to/javafx-sdk-21/lib" --add-modules javafx.controls,javafx.fxml```
+
 ```How to connect to the database```
 
 1. Create a db.properties file in the root of the project.
