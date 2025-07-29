@@ -34,6 +34,10 @@ public class Main extends Application {
         Button getBooks = new Button("Get all books");
         layout.getChildren().addAll(title, addBook, editBook, deleteBook, deleteAllBooks, getBooks);
 
+        // Allowing user to click to add a new book
+        addBook.setOnAction(e -> addBook(primaryStage));
+
+
         // Adds and creates interface
         Scene scene = new Scene(layout, 300, 250);
         primaryStage.setScene(scene);
@@ -56,10 +60,12 @@ public class Main extends Application {
         }
         ComboBox<Integer> numberOfRentsField = new ComboBox<>();
         numberOfRentsField.getItems().addAll(rentOptions);
+        numberOfRentsField.setValue(0); // Default value
         // Allowing user to select whether book is available or not
         Label isAvailableLabel = new Label("Is the book Available? ");
         ComboBox<String> isAvailableField = new ComboBox<>();
         isAvailableField.getItems().addAll("Yes", "No");
+        isAvailableField.setValue("Yes"); // Default status value
 
         layout.getChildren().addAll(title, libraryNameLabel, libraryNameField, authorLabel, authorField, numberOfRentsLabel, numberOfRentsField, isAvailableLabel, isAvailableField);
 
