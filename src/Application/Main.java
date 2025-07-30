@@ -50,6 +50,8 @@ public class Main extends Application {
 
         Label libraryNameLabel = new Label("Library Name: ");
         TextField libraryNameField = new TextField();
+        Label bookNameLabel = new Label("Book Name: ");
+        TextField bookNameField = new TextField();
         Label authorLabel = new Label("Author: ");
         TextField authorField = new TextField();
         // Allowing user to enter up to 100 rents for a book via a ranged list
@@ -67,7 +69,10 @@ public class Main extends Application {
         isAvailableField.getItems().addAll("Yes", "No");
         isAvailableField.setValue("Yes"); // Default status value
 
-        layout.getChildren().addAll(title, libraryNameLabel, libraryNameField, authorLabel, authorField, numberOfRentsLabel, numberOfRentsField, isAvailableLabel, isAvailableField);
+        Button submit = new Button("Submit");
+
+        layout.getChildren().addAll(title, libraryNameLabel, libraryNameField, bookNameLabel, bookNameField, authorLabel,
+                authorField, numberOfRentsLabel, numberOfRentsField, isAvailableLabel, isAvailableField, submit);
 
         Scene scene = new Scene(layout, 300, 250);
         primaryStage.setScene(scene);
