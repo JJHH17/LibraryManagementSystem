@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Main extends Application {
+    private static Library library = new Library("Main Library");
 
     @Override
     public void start(Stage primaryStage) {
@@ -37,6 +38,8 @@ public class Main extends Application {
         // Allowing user to click to add a new book
         addBook.setOnAction(e -> addBook(primaryStage));
 
+        // Allowing user to print all books
+        getBooks.setOnAction(e -> printAllBooks(primaryStage));
 
         // Adds and creates interface
         Scene scene = new Scene(layout, 300, 250);
@@ -91,6 +94,29 @@ public class Main extends Application {
 
         layout.getChildren().addAll(title, libraryNameLabel, libraryNameField, bookNameLabel, bookNameField, authorLabel,
                 authorField, numberOfRentsLabel, numberOfRentsField, isAvailableLabel, isAvailableField, submit, cancel);
+
+        Scene scene = new Scene(layout, 300, 250);
+        primaryStage.setScene(scene);
+    }
+
+    /** Method allowing user to print all books when called */
+    public static void printAllBooks(Stage primaryStage) {
+        Label title = new Label("Print All Books");
+        VBox layout = new VBox(10);
+        // Used to store items from the database
+        ArrayList<String> books = library.getBooks();
+
+        Label booksLabel = new Label("Books: ");
+        Label printBooks = new Label();
+        printBooks.setText(String.join("\n", books));
+
+        Button back = new Button("Back");
+        back.setOnAction(e -> {
+            layout.getChildren().clear();
+            selectOption(primaryStage);
+        });
+
+        layout.getChildren().addAll(title, booksLabel, printBooks, back);
 
         Scene scene = new Scene(layout, 300, 250);
         primaryStage.setScene(scene);
