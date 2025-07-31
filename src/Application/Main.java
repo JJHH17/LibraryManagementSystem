@@ -22,7 +22,7 @@ public class Main extends Application {
     }
 
     /** Page designed to allow the user to select what they wish to do */
-    public void selectOption(Stage primaryStage) {
+    public static void selectOption(Stage primaryStage) {
         Label title = new Label("Library Management System");
         VBox layout = new VBox(10);
 
@@ -66,10 +66,19 @@ public class Main extends Application {
         // Allowing user to select whether book is available or not
         Label isAvailableLabel = new Label("Is the book Available? ");
         ComboBox<String> isAvailableField = new ComboBox<>();
-        isAvailableField.getItems().addAll("Yes", "No");
-        isAvailableField.setValue("Yes"); // Default status value
+        isAvailableField.getItems().addAll("true", "false");
+        isAvailableField.setValue("true"); // Default status value
 
         Button submit = new Button("Submit");
+        submit.setOnAction(e -> {
+            Library library = new Library(libraryNameField.getText());
+            Book book = new Book(bookNameField.getText(), authorField.getText(), numberOfRentsField.getValue(),
+                    Boolean.getBoolean(isAvailableField.getValue()), library);
+            library.addBook(book);
+            // Navigating back to original page
+            layout.getChildren().clear();
+            selectOption(primaryStage);
+        });
 
         layout.getChildren().addAll(title, libraryNameLabel, libraryNameField, bookNameLabel, bookNameField, authorLabel,
                 authorField, numberOfRentsLabel, numberOfRentsField, isAvailableLabel, isAvailableField, submit);
