@@ -1,8 +1,10 @@
 package Application;
 
+import java.util.ArrayList;
+
 public class Library {
-    private String name;
     private Database database;;
+    private String name;
 
     public Library(String name) {
         this.name = name;
@@ -18,8 +20,8 @@ public class Library {
         database.addBook(book);
     }
 
-    public void getBooks() {
-        database.getBooks().forEach(System.out::println);
+    public ArrayList<String> getBooks() {
+        return database.getBooks();
     }
 
     public void deleteBook(String bookName) {
