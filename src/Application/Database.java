@@ -157,13 +157,12 @@ public class Database {
         }
     }
 
-    public void deleteAllBooks(String libraryName) {
-        String sql = "DELETE FROM book WHERE libraryName = ?";
+    public void deleteAllBooks() {
+        String sql = "DELETE FROM book";
 
         try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
              PreparedStatement prepared = connection.prepareStatement(sql)) {
 
-            prepared.setString(1, libraryName);
             int rowsDeleted = prepared.executeUpdate();
             if (rowsDeleted > 0) {
                 System.out.println("Books in library deleted successfully");
