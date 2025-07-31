@@ -33,6 +33,6 @@ public class Library {
     }
 
     public void deleteAllBooks() {
-        database.deleteAllBooks(this.name);
+        database.deleteAllBooks();
     }
 }
