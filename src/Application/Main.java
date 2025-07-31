@@ -41,6 +41,8 @@ public class Main extends Application {
         // Allowing user to print all books
         getBooks.setOnAction(e -> printAllBooks(primaryStage));
 
+        deleteAllBooks.setOnAction(e -> deleteAllBooks(primaryStage));
+
         // Adds and creates interface
         Scene scene = new Scene(layout, 300, 250);
         primaryStage.setScene(scene);
@@ -117,6 +119,31 @@ public class Main extends Application {
         });
 
         layout.getChildren().addAll(title, booksLabel, printBooks, back);
+
+        Scene scene = new Scene(layout, 300, 250);
+        primaryStage.setScene(scene);
+    }
+
+    /** Method used to delete all books on the database */
+    public static void deleteAllBooks(Stage primaryStage) {
+        Label title = new Label("Delete All Books");
+        VBox layout = new VBox(10);
+
+        Label warning = new Label("WARNING: This will delete all books from the database!");
+        Button confirm = new Button("Confirm");
+        confirm.setOnAction(e -> {
+            library.deleteAllBooks();
+            layout.getChildren().clear();
+            selectOption(primaryStage);
+        });
+
+        Button cancel = new Button("Cancel");
+        cancel.setOnAction(e -> {
+            layout.getChildren().clear();
+            selectOption(primaryStage);
+        });
+
+        layout.getChildren().addAll(title, warning, confirm, cancel);
 
         Scene scene = new Scene(layout, 300, 250);
         primaryStage.setScene(scene);
