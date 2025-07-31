@@ -54,6 +54,7 @@ public class Main extends Application {
         TextField bookNameField = new TextField();
         Label authorLabel = new Label("Author: ");
         TextField authorField = new TextField();
+
         // Allowing user to enter up to 100 rents for a book via a ranged list
         Label numberOfRentsLabel = new Label("Number of Rents: ");
         List<Integer> rentOptions = new ArrayList<>();
@@ -62,7 +63,8 @@ public class Main extends Application {
         }
         ComboBox<Integer> numberOfRentsField = new ComboBox<>();
         numberOfRentsField.getItems().addAll(rentOptions);
-        numberOfRentsField.setValue(0); // Default value
+        numberOfRentsField.setValue(0);
+
         // Allowing user to select whether book is available or not
         Label isAvailableLabel = new Label("Is the book Available? ");
         ComboBox<String> isAvailableField = new ComboBox<>();
@@ -80,8 +82,15 @@ public class Main extends Application {
             selectOption(primaryStage);
         });
 
+        // Allows the user to cancel and go back to the home page
+        Button cancel = new Button("Cancel");
+        cancel.setOnAction(e -> {
+            layout.getChildren().clear();
+            selectOption(primaryStage);
+        });
+
         layout.getChildren().addAll(title, libraryNameLabel, libraryNameField, bookNameLabel, bookNameField, authorLabel,
-                authorField, numberOfRentsLabel, numberOfRentsField, isAvailableLabel, isAvailableField, submit);
+                authorField, numberOfRentsLabel, numberOfRentsField, isAvailableLabel, isAvailableField, submit, cancel);
 
         Scene scene = new Scene(layout, 300, 250);
         primaryStage.setScene(scene);
