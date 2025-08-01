@@ -122,7 +122,7 @@ public class Database {
     /** Allows user to rent the book or return the book, which increments the quantity of takeouts and status of the book */
     public void editBook(String bookName, String callName) {
         if (callName.equalsIgnoreCase("rent")) {
-            String sql = "UPDATE book SET numberOfRents = numberOfRents + 1, isAvailable = false WHERE name = ?";
+            String sql = "UPDATE book SET numberOfRents = numberOfRents + 1, isAvailable = false WHERE name = ? AND isAvailable = true";
 
             try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
                  PreparedStatement prepared = connection.prepareStatement(sql)) {
@@ -172,23 +172,6 @@ public class Database {
 
         } catch (SQLException e) {
             System.out.println("There was an error when deleting the books");
-            e.printStackTrace();
-        }
-    }
-
-    /** Increases the quantity of rents for a book */
-    public void increaseBookRent(String bookName) {
-        String sql = "UPDATE book SET numberOfRents = numberOfRents + 1 WHERE name = ?";
-
-        try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-             PreparedStatement prepared = connection.prepareStatement(sql)) {
-
-            prepared.setString(1, bookName);
-            prepared.executeUpdate();
-            System.out.println("Book rented successfully");
-
-        } catch (SQLException e) {
-            System.out.println("There was an error renting the entered book");
             e.printStackTrace();
         }
     }
