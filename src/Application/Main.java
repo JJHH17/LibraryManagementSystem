@@ -29,11 +29,12 @@ public class Main extends Application {
 
         // App navigation buttons
         Button addBook = new Button("Add a Book");
-        Button editBook = new Button("Edit a Book");
+        Button rentBook = new Button("Rent a Book");
+        Button returnBook = new Button("Return a Book");
         Button deleteBook = new Button("Delete a Book");
         Button deleteAllBooks = new Button("Delete all books");
         Button getBooks = new Button("Get all books");
-        layout.getChildren().addAll(title, addBook, editBook, deleteBook, deleteAllBooks, getBooks);
+        layout.getChildren().addAll(title, addBook, rentBook, deleteBook, returnBook, deleteAllBooks, getBooks);
 
         // Allowing user to click to add a new book
         addBook.setOnAction(e -> addBook(primaryStage));
@@ -44,6 +45,8 @@ public class Main extends Application {
         deleteAllBooks.setOnAction(e -> deleteAllBooks(primaryStage));
 
         deleteBook.setOnAction(e -> deleteBook(primaryStage));
+
+        rentBook.setOnAction(e -> rentBook(primaryStage));
 
         // Adds and creates interface
         Scene scene = new Scene(layout, 300, 250);
@@ -162,6 +165,32 @@ public class Main extends Application {
         Button submit = new Button("Submit");
         submit.setOnAction(e -> {
             library.deleteBook(bookNameField.getText());
+            layout.getChildren().clear();
+            selectOption(primaryStage);
+        });
+
+        Button cancel = new Button("Cancel");
+        cancel.setOnAction(e -> {
+            layout.getChildren().clear();
+        });
+
+        layout.getChildren().addAll(title, bookNamelabel, bookNameField, submit, cancel);
+
+        Scene scene = new Scene(layout, 300, 250);
+        primaryStage.setScene(scene);
+    }
+
+    /** Method to rent a given book */
+    public static void rentBook(Stage primaryStage) {
+        Label title = new Label("Rent a Book");
+        VBox layout = new VBox(10);
+
+        Label bookNamelabel = new Label("Book Name: ");
+        TextField bookNameField = new TextField();
+
+        Button submit = new Button("Submit");
+        submit.setOnAction(e -> {
+            library.editBook(bookNameField.getText(), "rent");
             layout.getChildren().clear();
             selectOption(primaryStage);
         });
