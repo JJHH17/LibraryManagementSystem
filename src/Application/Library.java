@@ -31,4 +31,8 @@ public class Library {
     public void deleteAllBooks() {
         database.deleteAllBooks();
     }
+
+    public void increaseBookRent(String bookName) {
+        database.increaseBookRent(bookName);
+    }
 }
