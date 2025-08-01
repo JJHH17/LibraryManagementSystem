@@ -28,10 +28,6 @@ public class Library {
         database.deleteBook(bookName);
     }
 
-    public void editBook(String bookName, String callName) {
-        database.editBook(bookName, callName);
-    }
-
     public void deleteAllBooks() {
         database.deleteAllBooks();
     }
