@@ -137,7 +137,7 @@ public class Database {
             }
 
         } else if (callName.equalsIgnoreCase("return")) {
-            String sql = "UPDATE book SET isAvailable = true WHERE name = ?";
+            String sql = "UPDATE book SET isAvailable = true WHERE name = ? AND isAvailable = false";
 
             try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
                  PreparedStatement prepared = connection.prepareStatement(sql)) {
