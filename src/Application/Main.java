@@ -48,6 +48,8 @@ public class Main extends Application {
 
         rentBook.setOnAction(e -> rentBook(primaryStage));
 
+        returnBook.setOnAction(e -> returnBook(primaryStage));
+
         // Adds and creates interface
         Scene scene = new Scene(layout, 300, 250);
         primaryStage.setScene(scene);
@@ -191,6 +193,32 @@ public class Main extends Application {
         Button submit = new Button("Submit");
         submit.setOnAction(e -> {
             library.editBook(bookNameField.getText(), "rent");
+            layout.getChildren().clear();
+            selectOption(primaryStage);
+        });
+
+        Button cancel = new Button("Cancel");
+        cancel.setOnAction(e -> {
+            layout.getChildren().clear();
+        });
+
+        layout.getChildren().addAll(title, bookNamelabel, bookNameField, submit, cancel);
+
+        Scene scene = new Scene(layout, 300, 250);
+        primaryStage.setScene(scene);
+    }
+
+    /** Allows the user to return a given book */
+    public static void returnBook(Stage primaryStage) {
+        Label title = new Label("Return a Book");
+        VBox layout = new VBox(10);
+
+        Label bookNamelabel = new Label("Book Name: ");
+        TextField bookNameField = new TextField();
+
+        Button submit = new Button("Submit");
+        submit.setOnAction(e -> {
+            library.editBook(bookNameField.getText(), "return");
             layout.getChildren().clear();
             selectOption(primaryStage);
         });
