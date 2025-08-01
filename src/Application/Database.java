@@ -7,9 +7,9 @@ import java.util.Properties;
 import java.util.ArrayList;
 
 public class Database {
-    private String dbUrl;
-    private String dbUsername;
-    private String dbPassword;
+    private final String dbUrl;
+    private final String dbUsername;
+    private final String dbPassword;
 
     /** Fetches database credentials from the db.properties file */
     public Database() {
@@ -21,7 +21,7 @@ public class Database {
             e.printStackTrace();
         }
 
-        /** From the db.properties credentials file */
+        /* From the db.properties credentials file */
         this.dbUrl = properties.getProperty("db.url");
         this.dbUsername = properties.getProperty("db.username");
         this.dbPassword = properties.getProperty("db.password");
@@ -36,7 +36,7 @@ public class Database {
                 "isAvailable BOOLEAN NOT NULL," +
                 "libraryName VARCHAR(255) NOT NULL)";
 
-        // Creating the connection to database
+        // Creating the connection to DataBase
         try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
              Statement statement = connection.createStatement()) {
             statement.executeUpdate(sql);
@@ -51,7 +51,7 @@ public class Database {
     public void addBook(Book book) {
         String sql = "INSERT INTO book (name, author, numberOfRents, isAvailable, libraryName) VALUES (?, ?, ?, ?, ?)";
 
-        // Feeding object into SQL
+        // Feeding Object into SQL
         try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
              PreparedStatement prepared = connection.prepareStatement(sql)) {
 
@@ -69,7 +69,7 @@ public class Database {
         }
     }
 
-    /** Allows user to delete a book from database */
+    /** Allows user to delete a book from DataBase */
     public void deleteBook(String bookName) {
         String sql = "DELETE FROM book WHERE name = ?";
 
@@ -176,7 +176,7 @@ public class Database {
         }
     }
 
-    /** Increases the amount of rents for a book */
+    /** Increases the quantity of rents for a book */
     public void increaseBookRent(String bookName) {
         String sql = "UPDATE book SET numberOfRents = numberOfRents + 1 WHERE name = ?";
 
