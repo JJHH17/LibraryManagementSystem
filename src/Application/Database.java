@@ -108,7 +108,6 @@ public class Database {
                 boolean isAvailable = result.getBoolean("isAvailable");
                 String libraryName = result.getString("libraryName");
 
-                // TODO: FETCH THESE ITEMS FOR PRINTING
                 books.add("Book ID: " + bookId + " Book Name: " + name + " Author: " + author + " Number of Rents: " + numberOfRents
                         + " Is Available? " + isAvailable + " Library Name: " + libraryName);
             }
@@ -157,6 +156,7 @@ public class Database {
         }
     }
 
+    /** Deletes all books from the database */
     public void deleteAllBooks() {
         String sql = "DELETE FROM book";
 
@@ -176,25 +176,20 @@ public class Database {
         }
     }
 
-    /** Checks whether a library exists or not */
-    public boolean libraryChecker(String libraryName) {
-        String sql = "SELECT COUNT(*) FROM book WHERE libraryName = ?";
+    /** Increases the amount of rents for a book */
+    public void increaseBookRent(String bookName) {
+        String sql = "UPDATE book SET numberOfRents = numberOfRents + 1 WHERE name = ?";
 
         try (Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
              PreparedStatement prepared = connection.prepareStatement(sql)) {
 
-            prepared.setString(1, libraryName);
-            ResultSet resultSet = prepared.executeQuery();
-
-            if (resultSet.next()) {
-                return resultSet.getInt(1) > 0;
-            }
+            prepared.setString(1, bookName);
+            prepared.executeUpdate();
+            System.out.println("Book rented successfully");
 
         } catch (SQLException e) {
-            System.out.println("There was an error when checking the library");
-            System.out.println(e.getMessage());
+            System.out.println("There was an error renting the entered book");
+            e.printStackTrace();
         }
-
-        return false;
     }
 }
