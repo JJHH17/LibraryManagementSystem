@@ -43,6 +43,8 @@ public class Main extends Application {
 
         deleteAllBooks.setOnAction(e -> deleteAllBooks(primaryStage));
 
+        deleteBook.setOnAction(e -> deleteBook(primaryStage));
+
         // Adds and creates interface
         Scene scene = new Scene(layout, 300, 250);
         primaryStage.setScene(scene);
@@ -144,6 +146,32 @@ public class Main extends Application {
         });
 
         layout.getChildren().addAll(title, warning, confirm, cancel);
+
+        Scene scene = new Scene(layout, 300, 250);
+        primaryStage.setScene(scene);
+    }
+
+    /** Method to delete a given book from the database (Duplicates will all be deleted) */
+    public static void deleteBook(Stage primaryStage) {
+        Label title = new Label("Delete a Book");
+        VBox layout = new VBox(10);
+
+        Label bookNamelabel = new Label("Book Name: ");
+        TextField bookNameField = new TextField();
+
+        Button submit = new Button("Submit");
+        submit.setOnAction(e -> {
+            library.deleteBook(bookNameField.getText());
+            layout.getChildren().clear();
+            selectOption(primaryStage);
+        });
+
+        Button cancel = new Button("Cancel");
+        cancel.setOnAction(e -> {
+            layout.getChildren().clear();
+        });
+
+        layout.getChildren().addAll(title, bookNamelabel, bookNameField, submit, cancel);
 
         Scene scene = new Scene(layout, 300, 250);
         primaryStage.setScene(scene);
