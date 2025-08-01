@@ -32,7 +32,7 @@ public class Library {
         database.deleteAllBooks();
     }
 
-    public void increaseBookRent(String bookName) {
-        database.increaseBookRent(bookName);
+    public void editBook(String bookName, String callName) {
+        database.editBook(bookName, callName);
     }
 }
