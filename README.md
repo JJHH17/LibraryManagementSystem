@@ -41,4 +41,14 @@ As this is the case, both need to be installed and added to the project in order
 ```How to run/use the project```
 
 Once Postgres and JavaFX are added, you can run the project via the Main class.
-SCREENSHOTS OF PROJECT
+
+```Launched Project```
+<img width="708" height="584" alt="image" src="https://github.com/user-attachments/assets/4e33fc67-24b1-45fa-abce-8d73fcfd051f" />
+
+From here, you're able to 
+- Add a new book.
+- Rent an available book.
+- Delete a given book.
+- Return a rented book.
+- Delete all books.
+- Get a list of all books.
