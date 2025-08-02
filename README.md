@@ -1,8 +1,8 @@
 # LibraryManagementSystem
 
 - A library management system application.
-- Allows users to Add, Delete and Update book records
-- Allows for issuing and returning books
+- Allows users to Add and delete books.
+- Allows for renting and returning books
 - Displays available books.
 
 The project uses JavaFX for a frontend, and Postgresql for a database.
@@ -39,3 +39,6 @@ As this is the case, both need to be installed and added to the project in order
 4. The database class will then pick up these credentials via the dbURL, dbUsername and dbPassword variables
 
 ```How to run/use the project```
+
+Once Postgres and JavaFX are added, you can run the project via the Main class.
+SCREENSHOTS OF PROJECT
