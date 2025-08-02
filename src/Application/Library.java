@@ -32,6 +32,7 @@ public class Library {
         database.deleteAllBooks();
     }
 
+    /** Used for either returning or renting a book, from the database class */
     public void editBook(String bookName, String callName) {
         database.editBook(bookName, callName);
     }
